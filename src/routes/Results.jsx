@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 
+import RecipeList from '../components/RecipeList';
+
 function Results({ query }) {
   const BASE_URL = 'https://api.edamam.com';
   const APP_ID = process.env.REACT_APP_API_ID;
   const APP_KEY = process.env.REACT_APP_API_KEY;
 
   const [results, setResults] = useState('');
+
+  // I think you also have to fetch and store the images
 
   useEffect(() => {
     const load = async () => {
@@ -32,11 +36,7 @@ function Results({ query }) {
   return (
     results &&
     results.hits.length > 0 && (
-      <div>
-        {results.hits.map((result, index) => {
-          return <h1 key={index}>{result.recipe.label}</h1>;
-        })}
-      </div>
+      <RecipeList recipes={results.hits.map((result) => result.recipe)} />
     )
   );
 }

@@ -16,7 +16,7 @@ function App() {
     },
     {
       path: '/search',
-      element: <Results query='cake' />,
+      element: <Results query='macarons' />,
     },
   ]);
 
