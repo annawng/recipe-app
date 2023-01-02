@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import RecipeList from '../components/RecipeList';
 
-function Results({ query }) {
+function Results() {
   const BASE_URL = 'https://api.edamam.com';
   const APP_ID = process.env.REACT_APP_API_ID;
   const APP_KEY = process.env.REACT_APP_API_KEY;
 
   const [results, setResults] = useState('');
-
-  // I think you also have to fetch and store the images
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const load = async () => {
+    const load = async (query) => {
       try {
         const results = localStorage.getItem(query);
         if (results) {
@@ -30,8 +30,8 @@ function Results({ query }) {
       }
     };
 
-    load();
-  }, [BASE_URL, APP_ID, APP_KEY, query]);
+    load(searchParams.get('q'));
+  }, [BASE_URL, APP_ID, APP_KEY, searchParams]);
 
   return (
     results &&

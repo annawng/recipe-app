@@ -4,31 +4,40 @@ import styled from 'styled-components';
 const Recipes = styled.div`
   padding-block: 1rem;
   margin: auto;
-  max-width: 90%;
+  max-width: 80%;
 
-  @media (min-width: 601px) {
+  @media (min-width: 600px) {
     padding-block: 4rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 2rem;
     justify-items: center;
   }
 
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (min-width: 1025px) {
+  @media (min-width: 1150px) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
+    gap: 2rem;
   }
 `;
 
 const RecipeCard = styled.article`
   display: flex;
-  height: 7em;
   margin-block: 1rem;
   overflow: hidden;
+  width: 100%;
+  color: var(--on-surface);
+
+  &:hover {
+    cursor: pointer;
+
+    h2 {
+      text-decoration: underline;
+    }
+  }
 
   img {
     height: 100%;
@@ -43,72 +52,79 @@ const RecipeCard = styled.article`
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
   }
 
   p {
     text-transform: uppercase;
     font-size: 0.8rem;
-    font-weight: 700;
+    letter-spacing: 0.1rem;
+    color: var(--on-surface-low-emphasis);
   }
 
   .text {
     padding-left: 1rem;
   }
 
-  @media (min-width: 481px) {
+  @media (min-width: 480px) {
     h2 {
       font-size: 1.1rem;
     }
   }
 
-  @media (min-width: 601px) {
+  @media (min-width: 600px) {
     display: block;
     margin-block: 0;
-    height: auto;
     overflow: hidden;
+    border-radius: 4px;
+    box-shadow: var(--1dp-shadow);
 
     img {
       max-width: 100%;
-      height: 66%;
+      height: 125px;
       object-fit: cover;
     }
 
     .text {
-      padding: 1rem 0;
+      padding: 1rem;
     }
 
-    h2 {
-      max-width: 300px;
+    @media (min-width: 768px) {
+      img {
+        height: 150px;
+      }
     }
-  }
 
-  @media (min-width: 769px) {
-    height: 22rem;
+    @media (min-width: 1150px) {
+      img {
+        height: 200px;
+      }
+    }
   }
 `;
 
 function RecipeList({ recipes }) {
-  // on click, go to recipe page, pass recipe id
-
-  console.log(recipes);
-
   const getRecipeId = (uri) => uri.split('#recipe_').pop();
+
+  const viewRecipe = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
+  };
 
   return (
     <Recipes>
-      {recipes.map((recipe, index) => {
+      {recipes.map((recipe) => {
         const image = recipe.images.REGULAR;
         const id = getRecipeId(recipe.uri);
+        const url = recipe.url;
         return (
-          <RecipeCard key={id}>
+          <RecipeCard key={id} onClick={() => viewRecipe(url)}>
             <img
               src={image.url}
               alt=''
               width={image.width}
               height={image.height}
             />
-
             <div className='text'>
               <p>{recipe.source}</p>
               <h2>{recipe.label}</h2>
