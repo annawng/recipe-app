@@ -59,7 +59,7 @@ const RecipeCard = styled.article`
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 0.1rem;
-    color: var(--on-surface-low-emphasis);
+    color: var(--on-surface-light);
   }
 
   .text {

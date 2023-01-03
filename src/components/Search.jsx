@@ -8,7 +8,7 @@ const SearchBar = styled.form`
   }
 
   input::placeholder {
-    color: var(--on-surface-low-emphasis);
+    color: var(--on-surface-light);
   }
 `;
 

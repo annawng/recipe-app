@@ -49,13 +49,17 @@ h6 {
 :root {
   --background: #ffffff;
   --surface: #ffffff;
+  --surface-1: #ffffff;
+  --surface-2: #ffffff;
+  --surface-8: #ffffff;
   --primary: #0288ee;
   --secondary: #6802ee;
   --error: #b00020;
   --shadow: #666666;
-  --on-background-low-emphasis: #666666;
+  --on-background-light: #666666;
   --on-background: #212121;
-  --on-surface-low-emphasis: #666666;
+  --on-surface-lighter: #9e9e9e;
+  --on-surface-light: #666666;
   --on-surface: #212121;
   --on-primary: #ffffff;
   --on-secondary: #ffffff;
@@ -70,7 +74,7 @@ h6 {
     0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
-[data-theme='dark'] {
+.dark-mode {
   --background: #121212;
   --surface-0: #121212;
   --surface-1: #1e1e1e;
@@ -88,6 +92,4 @@ h6 {
 
 body {
   font-family: 'Outfit', sans-serif;
-  color: var(--on-background);
-  background-color: var(--background);
 }
