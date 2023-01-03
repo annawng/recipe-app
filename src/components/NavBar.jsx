@@ -39,6 +39,7 @@ function NavBar() {
     }
 
     .react-toggle-track-check {
+      left: auto;
       right: 7px;
       color: var(--on-background);
       z-index: 1;
